@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daniel Sommer - Head of Engineering</title>
+    <style>
+        /* CSS Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background-color: #f8fafc;
+            font-size: 16px;
+        }
+
+        /* Container and Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Header/Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.2);
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: bold;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero .title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .hero .summary {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* Card Styles */
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: #1a202c;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
+        }
+
+        /* Experience Styles */
+        .experience-item {
+            margin-bottom: 2.5rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .experience-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .job-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 0.25rem;
+        }
+
+        .company {
+            font-size: 1.2rem;
+            color: #667eea;
+            font-weight: 500;
+        }
+
+        .duration {
+            font-size: 1rem;
+            color: #718096;
+            font-weight: 500;
+            padding: 0.25rem 0.75rem;
+            background-color: #f7fafc;
+            border-radius: 20px;
+        }
+
+        .job-description {
+            color: #4a5568;
+            line-height: 1.7;
+            margin-top: 1rem;
+        }
+
+        /* Education Styles */
+        .education-item {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background-color: #f8fafc;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .degree {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+
+        .institution {
+            font-size: 1.1rem;
+            color: #667eea;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .edu-duration {
+            font-size: 0.95rem;
+            color: #718096;
+            margin-bottom: 0.5rem;
+        }
+
+        .grade {
+            font-size: 0.9rem;
+            color: #38a169;
+            font-weight: 500;
+        }
+
+        .edu-description {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-top: 0.75rem;
+        }
+
+        /* Skills Styles */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .skill-category {
+            padding: 1.5rem;
+            background-color: #f8fafc;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .skill-category h4 {
+            font-size: 1.3rem;
+            color: #2d3748;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: transform 0.2s ease;
+        }
+
+        .skill-tag:hover {
+            transform: scale(1.05);
+        }
+
+        /* Certifications Styles */
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .certification-item {
+            padding: 1.5rem;
+            background-color: #f8fafc;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.2s ease;
+        }
+
+        .certification-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .cert-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+
+        .cert-issuer {
+            color: #667eea;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .cert-date {
+            font-size: 0.9rem;
+            color: #718096;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .title {
+                font-size: 1.3rem;
+            }
+
+            .hero .summary {
+                font-size: 1.1rem;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .experience-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .certifications-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+
+            .hero {
+                padding: 3rem 0;
+            }
+
+            .profile-image {
+                width: 120px;
+                height: 120px;
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+
+            .hero {
+                background: #667eea;
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+
+            .card {
+                box-shadow: none;
+                border: 1px solid #ccc;
+                break-inside: avoid;
+            }
+
+            .skill-tag {
+                background: #667eea;
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header/Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="profile-image">
+                    DS
+                </div>
+                <h1>Daniel Sommer</h1>
+                <p class="title">Head of Engineering - tilta.io</p>
+                <p class="summary">
+                    Experienced entrepreneurial engineering leader with expertise in team management, strategic
+                    technical oversight,
+                    and building robust software architectures. Passionate about developing high-performing teams
+                    and delivering scalable technology solutions.
+                </p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span>📧</span>
+                        <span>contact@danielsommer.dev</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>📱</span>
+                        <span>+49 XXX XXXXXXX</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>📍</span>
+                        <span>Germany</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="main-content">
+            <!-- Experience Section -->
+            <section class="card">
+                <h2 class="section-title">Experience</h2>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <h3 class="job-title">Head of Engineering</h3>
+                            <p class="company">Tilta</p>
+                        </div>
+                        <span class="duration">Feb 2023 - Present</span>
+                    </div>
+                    <p class="job-description">
+                        As the Head of Engineering at Tilta, I lead the engineering department, overseeing the team's
+                        growth and each member's professional development. My responsibilities encompass strategic
+                        technical oversight to ensure robust and progressive alignment with our long-term vision.
+                    </p>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <h3 class="job-title">Mentor</h3>
+                            <p class="company">Founders Bay</p>
+                        </div>
+                        <span class="duration">Jan 2022 - Present</span>
+                    </div>
+                    <p class="job-description">
+                        As a mentor at Founders Bay, I provide strategic guidance to nascent startups, leveraging my
+                        expertise in technical and product domains. My primary objective is to ensure startups develop
+                        robust software architectures, scalable infrastructures, and efficient development teams
+                        aligning with their business goals. Additionally, I assist companies in creating highly
+                        user-centric products.
+                    </p>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <h3 class="job-title">Engineering Lead</h3>
+                            <p class="company">Orbit - orbitdigital.de</p>
+                        </div>
+                        <span class="duration">Jul 2021 - Feb 2023</span>
+                    </div>
+                    <p class="job-description">
+                        Upon promotion, my role expanded to emphasize the management and development of internal
+                        employees while maintaining my responsibilities as a Senior Solution Architect.
+                    </p>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <h3 class="job-title">Senior Solution Architect</h3>
+                            <p class="company">Orbit - orbitdigital.de</p>
+                        </div>
+                        <span class="duration">Nov 2019 - Jul 2021</span>
+                    </div>
+                    <p class="job-description">
+                        In this role, I served as both Technology Lead and Senior Solution Architect, overseeing a
+                        diverse array of projects across various industries. My responsibilities encompassed the entire
+                        project lifecycle, from initial requirements analysis and prototyping to the ongoing maintenance
+                        of operational systems. Additionally, I managed engineering teams, ensuring effective
+                        collaboration and high-quality deliverables.
+                    </p>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <h3 class="job-title">Software Engineer</h3>
+                            <p class="company">Carrypicker</p>
+                        </div>
+                        <span class="duration">Jun 2018 - Oct 2019</span>
+                    </div>
+                    <p class="job-description">
+                        As a Software Engineer at Carrypicker, a nascent startup, I was instrumental in laying the
+                        technical foundation by writing the initial lines of code. I played a pivotal role in developing
+                        and designing various systems and the Android application, contributing significantly to the
+                        company's growth. Additionally, I participated in the recruitment process, helping to build a
+                        strong and capable team.
+                    </p>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <h3 class="job-title">Software Engineer</h3>
+                            <p class="company">Assense Software Solutions GmbH</p>
+                        </div>
+                        <span class="duration">Jan 2017 - May 2018</span>
+                    </div>
+                    <p class="job-description">
+                        At Assense, I served as a Consultant Software Engineer, contributing to the development and
+                        design of various system components for the startup Cargonexx.
+                    </p>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <h3 class="job-title">Android Developer</h3>
+                            <p class="company">CodeFrog IT GmbH</p>
+                        </div>
+                        <span class="duration">Jul 2016 - Oct 2016</span>
+                    </div>
+                    <p class="job-description">
+                        At CodeFrog, I contributed to the development of an Android application designed to track
+                        employee working hours. Additionally, I provided support for various web-based projects
+                        undertaken by my colleagues.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Education Section -->
+            <section class="card">
+                <h2 class="section-title">Education</h2>
+
+                <div class="education-item">
+                    <h3 class="degree">Bachelor of Science - Wirtschaftsinformatik</h3>
+                    <p class="institution">FOM University of Applied Sciences for Economics and Management</p>
+                    <p class="edu-duration">2019 - May 2023</p>
+                    <p class="grade">Grade: 2.1</p>
+                    <p class="edu-description">
+                        Thesis: Examination of design methods for the concept creation of a brokerage platform
+                    </p>
+                </div>
+
+                <div class="education-item">
+                    <h3 class="degree">Certificate of Specialization in Leadership and Management</h3>
+                    <p class="institution">Harvard Business School Online</p>
+                    <p class="edu-duration">Jan 2024 - May 2025</p>
+                    <p class="grade">Grade: Completed</p>
+                    <p class="edu-description">
+                        Completed a comprehensive leadership development program focusing on essential management
+                        competencies including strategic decision-making, team leadership, organizational behavior, and
+                        effective communication. Gained practical frameworks for leading high-performing teams, managing
+                        change, and driving business results through evidence-based leadership practices. This rigorous
+                        online program combines Harvard Business School's case-based learning methodology with
+                        real-world application to develop critical leadership skills for today's dynamic business
+                        environment.
+                    </p>
+                </div>
+
+                <div class="education-item">
+                    <h3 class="degree">Certificate in Leadership Principles</h3>
+                    <p class="institution">Harvard Business School Online</p>
+                    <p class="edu-duration">Apr 2025 - May 2025</p>
+                    <p class="grade">Grade: Completed</p>
+                    <p class="edu-description">
+                        Leadership Principles is a 6-week, 25-hour online certificate program from Harvard Business
+                        School. Online Leadership Principles Course | HBS Online This comprehensive program develops
+                        essential leadership capabilities through HBS's signature case-based learning methodology, 360°
+                        feedback assessments, and peer collaboration.
+                        Key focus areas included building self-awareness as a leader, developing techniques for
+                        cultivating high-performing teams, adapting leadership styles to meet organizational challenges,
+                        and leveraging professional networks for sustained impact. The program emphasized practical
+                        application through real-world business scenarios and multimedia case studies with industry
+                        experts.
+                        This certificate represents advanced training in authentic leadership, team development, and
+                        organizational effectiveness from one of the world's premier business education institutions.
+                    </p>
+                </div>
+
+                <div class="education-item">
+                    <h3 class="degree">Certificate in Strategy Execution</h3>
+                    <p class="institution">Harvard Business School Online</p>
+                    <p class="edu-duration">Sep 2024 - Nov 2024</p>
+                    <p class="grade">Grade: Completed</p>
+                    <p class="edu-description">
+                        Strategy Execution is an eight-week, 40-45 hour online certification program from Harvard
+                        Business School. Strategy Execution teaches a comprehensive framework for implementing strategy,
+                        covering topics including resource allocation and job design, performance measurement, risk
+                        management, and strategies for detecting and adapting to change. Participants gain the knowledge
+                        and skills needed to execute strategy successfully. Strategy Execution was developed by leading
+                        Harvard Business School faculty and is delivered in an active learning environment based on the
+                        HBS signature case-based learning method.
+                    </p>
+                </div>
+
+                <div class="education-item">
+                    <h3 class="degree">Certificate in Management Essentials</h3>
+                    <p class="institution">Harvard Business School Online</p>
+                    <p class="edu-duration">Jan 2024 - Apr 2024</p>
+                    <p class="grade">Grade: Completed</p>
+                    <p class="edu-description">
+                        Management Essentials is an 8-week, 35-hour online certificate program from Harvard Business
+                        School. Management Essentials takes a distinctive, hands-on approach to management. Participants
+                        in this course learn to identify, understand, design, and shape critical organizational and
+                        managerial processes as a means of getting the work done.
+
+                        The course focuses on four of the most essential processes for managers - decision-making,
+                        implementation, learning, and change. Participants work through real-world challenges faced by
+                        managers across a variety of industries and come away with tangible tools and techniques that
+                        they can readily apply in their organizations to create higher quality, more efficient work.
+
+                    </p>
+                </div>
+
+                <div class="education-item">
+                    <h3 class="degree">Elektro- und Informationstechnik</h3>
+                    <p class="institution">Ostfalia - University of Applied Sciences</p>
+                    <p class="edu-duration">2015 - 2016</p>
+                </div>
+
+                <div class="education-item">
+                    <h3 class="degree">Elektrotechnik</h3>
+                    <p class="institution">University of Applied Sciences and Arts Dortmund</p>
+                    <p class="edu-duration">2013 - 2015</p>
+                </div>
+
+                <div class="education-item">
+                    <h3 class="degree">Fachhochschulreife, Schwerpunkt Elektrotechnik</h3>
+                    <p class="institution">Berufsbildende Schulen Meppen</p>
+                    <p class="edu-duration">2012 - 2013</p>
+                </div>
+            </section>
+
+            <!-- Skills Section -->
+            <section class="card">
+                <h2 class="section-title">Skills</h2>
+
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h4>Executive Leadership & Management</h4>
+                        <div class="skill-list">
+                            <span class="skill-tag">Engineering Leadership</span>
+                            <span class="skill-tag">Technical Leadership</span>
+                            <span class="skill-tag">Interdepartmental Team Leadership</span>
+                            <span class="skill-tag">Performance Management</span>
+                            <span class="skill-tag">Change Management</span>
+                            <span class="skill-tag">Stakeholder Management</span>
+                            <span class="skill-tag">Business Process Management</span>
+                            <span class="skill-tag">Mentoring</span>
+                            <span class="skill-tag">Coaching</span>
+                            <span class="skill-tag">Budgeting</span>
+                            <span class="skill-tag">Conflict Resolution</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h4>Strategic Business Leadership</h4>
+                        <div class="skill-list">
+                            <span class="skill-tag">Corporate Strategy</span>
+                            <span class="skill-tag">Product Strategy</span>
+                            <span class="skill-tag">IT Strategy</span>
+                            <span class="skill-tag">Data Strategy</span>
+                            <span class="skill-tag">Strategic Decision-Making</span>
+                            <span class="skill-tag">Strategic Technical Oversight</span>
+                            <span class="skill-tag">Key Performance Indicators</span>
+                            <span class="skill-tag">Product Development</span>
+                            <span class="skill-tag">Business Analysis</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h4>Technical Architecture & Innovation</h4>
+                        <div class="skill-list">
+                            <span class="skill-tag">Software Architecture</span>
+                            <span class="skill-tag">Solution Architecture</span>
+                            <span class="skill-tag">System Design</span>
+                            <span class="skill-tag">Microservices</span>
+                            <span class="skill-tag">API Design</span>
+                            <span class="skill-tag">Design Thinking</span>
+                            <span class="skill-tag">Innovation</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h4>Technology Stack Leadership</h4>
+                        <div class="skill-list">
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">TypeScript</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Kotlin</span>
+                            <span class="skill-tag">Java</span>
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">Spring Boot</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h4>Cloud & Infrastructure Strategy</h4>
+                        <div class="skill-list">
+                            <span class="skill-tag">AWS</span>
+                            <span class="skill-tag">Microsoft Azure</span>
+                            <span class="skill-tag">Google Cloud Platform</span>
+                            <span class="skill-tag">Cloud Architecture</span>
+                            <span class="skill-tag">DevOps</span>
+                            <span class="skill-tag">CI/CD</span>
+                            <span class="skill-tag">Infrastructure Strategy</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h4>Data-Driven Leadership</h4>
+                        <div class="skill-list">
+                            <span class="skill-tag">Data Strategy</span>
+                            <span class="skill-tag">Data Architecture</span>
+                            <span class="skill-tag">Data Analytics</span>
+                            <span class="skill-tag">Data-driven Decision Making</span>
+                            <span class="skill-tag">Statistical Analysis</span>
+                            <span class="skill-tag">Database Design</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h4>AI & Emerging Technologies</h4>
+                        <div class="skill-list">
+                            <span class="skill-tag">Artificial Intelligence</span>
+                            <span class="skill-tag">Machine Learning</span>
+                            <span class="skill-tag">GenAI Applications</span>
+                            <span class="skill-tag">AI Strategy</span>
+                            <span class="skill-tag">Prompt Engineering</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h4>Executive Communication & Collaboration</h4>
+                        <div class="skill-list">
+                            <span class="skill-tag">Executive Communication</span>
+                            <span class="skill-tag">Cross-functional Collaboration</span>
+                            <span class="skill-tag">Problem Solving</span>
+                            <span class="skill-tag">Organizational Behavior</span>
+                            <span class="skill-tag">User Experience (UX)</span>
+                            <span class="skill-tag">Technical Writing</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h4>Process & Quality Leadership</h4>
+                        <div class="skill-list">
+                            <span class="skill-tag">Agile Methodologies</span>
+                            <span class="skill-tag">Scrum</span>
+                            <span class="skill-tag">Lean</span>
+                            <span class="skill-tag">Quality Assurance</span>
+                            <span class="skill-tag">Continuous Improvement</span>
+                            <span class="skill-tag">Project Management</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Certifications Section -->
+            <section class="card">
+                <h2 class="section-title">Professional Certifications</h2>
+
+                <div class="certifications-grid">
+                    <div class="certification-item">
+                        <h4 class="cert-title">Orchestrating Workflows for GenAI Applications</h4>
+                        <p class="cert-issuer">DeepLearning.AI</p>
+                        <p class="cert-date">Jun 2025</p>
+                    </div>
+
+                    <div class="certification-item">
+                        <h4 class="cert-title">Data Warehousing Concepts</h4>
+                        <p class="cert-issuer">DataCamp</p>
+                        <p class="cert-date">Feb 2025</p>
+                    </div>
+
+                    <div class="certification-item">
+                        <h4 class="cert-title">Decoding Decision Modeling</h4>
+                        <p class="cert-issuer">DataCamp</p>
+                        <p class="cert-date">Feb 2025</p>
+                    </div>
+
+                    <div class="certification-item">
+                        <h4 class="cert-title">Supervised Learning with scikit-learn</h4>
+                        <p class="cert-issuer">DataCamp</p>
+                        <p class="cert-date">Jan 2025</p>
+                    </div>
+
+                    <div class="certification-item">
+                        <h4 class="cert-title">Data Manipulation with pandas</h4>
+                        <p class="cert-issuer">DataCamp</p>
+                        <p class="cert-date">Jan 2025</p>
+                    </div>
+
+                    <div class="certification-item">
+                        <h4 class="cert-title">Data Strategy</h4>
+                        <p class="cert-issuer">DataCamp</p>
+                        <p class="cert-date">Jan 2025</p>
+                    </div>
+
+                    <div class="certification-item">
+                        <h4 class="cert-title">Data-Driven Decision Making in SQL</h4>
+                        <p class="cert-issuer">DataCamp</p>
+                        <p class="cert-date">Jan 2025</p>
+                    </div>
+
+                    <div class="certification-item">
+                        <h4 class="cert-title">Database Design</h4>
+                        <p class="cert-issuer">DataCamp</p>
+                        <p class="cert-date">Jan 2025</p>
+                    </div>
+
+                    <div class="certification-item">
+                        <h4 class="cert-title">Exploratory Data Analysis in SQL</h4>
+                        <p class="cert-issuer">DataCamp</p>
+                        <p class="cert-date">Jan 2025</p>
+                    </div>
+
+                    <div class="certification-item">
+                        <h4 class="cert-title">Introduction to Statistics in Python</h4>
+                        <p class="cert-issuer">DataCamp</p>
+                        <p class="cert-date">Jan 2025</p>
+                    </div>
+
+                    <div class="certification-item">
+                        <h4 class="cert-title">AI Agents in LangGraph</h4>
+                        <p class="cert-issuer">DeepLearning.AI</p>
+                        <p class="cert-date">Dec 2024</p>
+                    </div>
+
+                    <div class="certification-item">
+                        <h4 class="cert-title">ChatGPT Prompt Engineering for Developers</h4>
+                        <p class="cert-issuer">DeepLearning.AI</p>
+                        <p class="cert-date">Nov 2024</p>
+                    </div>
+
+                    <div class="certification-item">
+                        <h4 class="cert-title">Finetuning Large Language Models</h4>
+                        <p class="cert-issuer">DeepLearning.AI</p>
+                        <p class="cert-date">Nov 2024</p>
+                    </div>
+
+                    <div class="certification-item">
+                        <h4 class="cert-title">Introducing Multimodal Llama 3.2</h4>
+                        <p class="cert-issuer">DeepLearning.AI</p>
+                        <p class="cert-date">Nov 2024</p>
+                    </div>
+
+                    <div class="certification-item">
+                        <h4 class="cert-title">Serverless LLM Apps Amazon Bedrock</h4>
+                        <p class="cert-issuer">DeepLearning.AI</p>
+                        <p class="cert-date">Nov 2024</p>
+                    </div>
+
+                    <div class="certification-item">
+                        <h4 class="cert-title">AWS Knowledge: Architecting</h4>
+                        <p class="cert-issuer">Amazon Web Services</p>
+                        <p class="cert-date">Apr 2024</p>
+                    </div>
+
+                    <div class="certification-item">
+                        <h4 class="cert-title">Ultimate AWS Certified Solutions Architect Associate SAA-C03</h4>
+                        <p class="cert-issuer">Udemy</p>
+                        <p class="cert-date">Apr 2024</p>
+                    </div>
+
+                    <div class="certification-item">
+                        <h4 class="cert-title">Bash Scripting and Shell Programming (Linux Command Line)</h4>
+                        <p class="cert-issuer">Udemy</p>
+                        <p class="cert-date">Apr 2024</p>
+                    </div>
+                    <div class="certification-item">
+                        <h4 class="cert-title">The Advanced SQL Server Masterclass For Data Analysis</h4>
+                        <p class="cert-issuer">Udemy</p>
+                        <p class="cert-date">Apr 2024</p>
+                    </div>
+
+                    <div class="certification-item">
+                        <h4 class="cert-title">The Ultimate Authentication Course with NodeJS and VueJS</h4>
+                        <p class="cert-issuer">Udemy</p>
+                        <p class="cert-date">Mar 2024</p>
+                    </div>
+                    <div class="certification-item">
+                        <h4 class="cert-title">SQL Intermediate</h4>
+                        <p class="cert-issuer">SoloLearn</p>
+                        <p class="cert-date">Mar 2024</p>
+                    </div>
+
+                    <div class="certification-item">
+                        <h4 class="cert-title">Introduction to SQL</h4>
+                        <p class="cert-issuer">SoloLearn</p>
+                        <p class="cert-date">Mar 2024</p>
+                    </div>
+
+                    <div class="certification-item">
+                        <h4 class="cert-title">Ultimate Rust Crash Course</h4>
+                        <p class="cert-issuer">Udemy</p>
+                        <p class="cert-date">Nov 2023</p>
+                    </div>
+
+                    <div class="certification-item">
+                        <h4 class="cert-title">Tech Writers Master Class</h4>
+                        <p class="cert-issuer">Udemy</p>
+                        <p class="cert-date">Nov 2023</p>
+                    </div>
+
+                    <div class="certification-item">
+                        <h4 class="cert-title">Bootstrap 4 From Scratch With 5 Projects</h4>
+                        <p class="cert-issuer">Udemy</p>
+                        <p class="cert-date">Nov 2023</p>
+                    </div>
+
+                    <div class="certification-item">
+                        <h4 class="cert-title">The Complete App Design Course - UX, UI and Design Thinking</h4>
+                        <p class="cert-issuer">Udemy</p>
+                        <p class="cert-date">Nov 2023</p>
+                    </div>
+
+                    <div class="certification-item">
+                        <h4 class="cert-title">Software Architecture: REST API Design - The Complete Guide</h4>
+                        <p class="cert-issuer">Udemy</p>
+                        <p class="cert-date">Nov 2023</p>
+                    </div>
+
+                    <div class="certification-item">
+                        <h4 class="cert-title">Java Design Patterns</h4>
+                        <p class="cert-issuer">Udemy</p>
+                        <p class="cert-date">Nov 2023</p>
+                    </div>
+
+                    <div class="certification-item">
+                        <h4 class="cert-title">AWS Partner: Accreditation (Business)</h4>
+                        <p class="cert-issuer">Amazon Web Services</p>
+                        <p class="cert-date">Aug 2021</p>
+                    </div>
+
+                    <div class="certification-item">
+                        <h4 class="cert-title">AWS Partner: Accreditation (Technical)</h4>
+                        <p class="cert-issuer">Amazon Web Services</p>
+                        <p class="cert-date">Aug 2021</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+
+</html>
