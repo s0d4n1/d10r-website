@@ -6,118 +6,307 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daniel Sommer - Head of Engineering</title>
     <style>
-        /* CSS Reset and Base Styles */
+        /* Import Google Fonts - Mix of professional sans-serif and authentic monospace */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap');
+
+        /* CSS Custom Properties - Terminal-inspired color palette */
+        :root {
+            /* Primary Colors - Inspired by modern dark IDE themes */
+            --primary-bg: #0d1117;
+            --secondary-bg: #161b22;
+            --tertiary-bg: #21262d;
+            --accent-bg: #f0f3ff;
+            
+            /* Text colors with excellent contrast */
+            --primary-text: #c9d1d9;
+            --secondary-text: #8b949e;
+            --accent-text: #58a6ff;
+            --highlight-text: #7c3aed;
+            --success-text: #3fb950;
+            --warning-text: #f85149;
+            
+            /* Executive gradient - subtle tech influence */
+            --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #06b6d4 100%);
+            --gradient-secondary: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            
+            /* Spacing system */
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+            --space-3xl: 4rem;
+            
+            /* Border radius for modern feel */
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            
+            /* Shadows for depth */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-glow: 0 0 0 1px rgba(99, 102, 241, 0.2), 0 0 20px rgba(99, 102, 241, 0.1);
+        }
+
+        /* Reset and base styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            color: #2c3e50;
-            background-color: #f8fafc;
-            font-size: 16px;
+        *::before,
+        *::after {
+            box-sizing: border-box;
         }
 
-        /* Container and Layout */
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
+            color: var(--primary-text);
+            background: var(--primary-bg);
+            font-weight: 400;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Selection styling with terminal accent */
+        ::selection {
+            background: var(--accent-text);
+            color: var(--primary-bg);
+        }
+
+        ::-moz-selection {
+            background: var(--accent-text);
+            color: var(--primary-bg);
+        }
+
+        /* Container and layout */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 var(--space-lg);
         }
 
         .main-content {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2xl);
+            margin-bottom: var(--space-2xl);
         }
 
-        /* Header/Hero Section */
+        /* Hero section - Executive presence with developer authenticity */
         .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 4rem 0;
+            background: var(--gradient-primary);
+            position: relative;
+            padding: var(--space-3xl) 0;
             text-align: center;
-            margin-bottom: 3rem;
+            overflow: hidden;
+            margin-bottom: var(--space-3xl);
+        }
+
+        /* Subtle animated background pattern */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(1deg); }
         }
 
         .hero-content {
             max-width: 800px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         .profile-image {
-            width: 150px;
-            height: 150px;
+            width: 140px;
+            height: 140px;
             border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.2);
-            margin: 0 auto 2rem;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            margin: 0 auto var(--space-xl);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
-            font-weight: bold;
-            border: 4px solid rgba(255, 255, 255, 0.3);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: white;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.2);
+            box-shadow: var(--shadow-glow);
         }
 
         .hero h1 {
-            font-size: 3rem;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
             font-weight: 700;
-            margin-bottom: 0.5rem;
+            color: white;
+            margin-bottom: var(--space-sm);
+            font-family: 'Inter', sans-serif;
+            letter-spacing: -0.02em;
         }
 
         .hero .title {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            opacity: 0.9;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: var(--space-lg);
+            font-weight: 500;
+            letter-spacing: 0.02em;
+        }
+
+        /* Add terminal-style prompt before title */
+        .hero .title::before {
+            content: '> ';
+            color: var(--success-text);
+            font-weight: 600;
         }
 
         .hero .summary {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            margin-bottom: 2rem;
-            opacity: 0.95;
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: var(--space-xl);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .contact-info {
             display: flex;
             justify-content: center;
-            gap: 2rem;
+            gap: var(--space-xl);
             flex-wrap: wrap;
+            margin-top: var(--space-xl);
         }
 
         .contact-item {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: var(--space-sm);
             font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
         }
 
-        /* Card Styles */
+        /* Social links styling */
+        .social-link {
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.9);
+            padding: var(--space-md) var(--space-lg);
+            border-radius: var(--radius-md);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            color: white;
+        }
+
+        .social-link:active {
+            transform: translateY(0);
+        }
+
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .social-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover .social-icon {
+            transform: scale(1.1);
+        }
+
+        .social-link:hover .social-icon svg {
+            filter: brightness(1.2);
+        }
+
+        /* Terminal-style focus states */
+        .social-link:focus {
+            outline: 2px solid var(--success-text);
+            outline-offset: 2px;
+        }
+
+        /* Card system - Modern, clean with subtle tech touches */
         .card {
-            background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            border: 1px solid #e2e8f0;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            background: var(--secondary-bg);
+            border-radius: var(--radius-xl);
+            padding: var(--space-2xl);
+            border: 1px solid var(--tertiary-bg);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-xl) var(--radius-xl) 0 0;
         }
 
         .card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            border-color: rgba(99, 102, 241, 0.3);
+            box-shadow: var(--shadow-lg);
         }
 
+        /* Section titles with monospace accent */
         .section-title {
-            font-size: 2.5rem;
+            font-size: clamp(2rem, 4vw, 2.5rem);
             font-weight: 700;
-            margin-bottom: 2rem;
-            color: #1a202c;
+            color: var(--primary-text);
+            margin-bottom: var(--space-xl);
             position: relative;
-            padding-bottom: 0.5rem;
+            padding-bottom: var(--space-md);
+            font-family: 'Inter', sans-serif;
         }
 
         .section-title::after {
@@ -126,16 +315,26 @@
             bottom: 0;
             left: 0;
             width: 60px;
-            height: 4px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 2px;
+            height: 3px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-sm);
         }
 
-        /* Experience Styles */
+        /* Add subtle terminal syntax highlighting to section titles */
+        .section-title::before {
+            content: '// ';
+            color: var(--secondary-text);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8em;
+            font-weight: 400;
+        }
+
+        /* Experience section styling */
         .experience-item {
-            margin-bottom: 2.5rem;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid #e2e8f0;
+            margin-bottom: var(--space-xl);
+            padding-bottom: var(--space-xl);
+            border-bottom: 1px solid var(--tertiary-bg);
+            position: relative;
         }
 
         .experience-item:last-child {
@@ -147,188 +346,218 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 1rem;
+            margin-bottom: var(--space-lg);
             flex-wrap: wrap;
-            gap: 1rem;
+            gap: var(--space-md);
         }
 
         .job-title {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 600;
-            color: #2d3748;
-            margin-bottom: 0.25rem;
+            color: var(--primary-text);
+            margin-bottom: var(--space-xs);
+            font-family: 'Inter', sans-serif;
         }
 
         .company {
-            font-size: 1.2rem;
-            color: #667eea;
+            font-size: 1.1rem;
+            color: var(--accent-text);
             font-weight: 500;
+            font-family: 'JetBrains Mono', monospace;
         }
 
         .duration {
-            font-size: 1rem;
-            color: #718096;
-            font-weight: 500;
-            padding: 0.25rem 0.75rem;
-            background-color: #f7fafc;
-            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--secondary-text);
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--tertiary-bg);
+            padding: var(--space-xs) var(--space-md);
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(99, 102, 241, 0.2);
         }
 
         .job-description {
-            color: #4a5568;
+            color: var(--secondary-text);
             line-height: 1.7;
-            margin-top: 1rem;
+            font-size: 1rem;
         }
 
-        /* Education Styles */
+        /* Education section */
         .education-item {
-            margin-bottom: 2rem;
-            padding: 1.5rem;
-            background-color: #f8fafc;
-            border-radius: 8px;
-            border-left: 4px solid #667eea;
+            margin-bottom: var(--space-lg);
+            padding: var(--space-lg);
+            background: var(--tertiary-bg);
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--accent-text);
+            transition: all 0.3s ease;
+        }
+
+        .education-item:hover {
+            border-left-color: var(--highlight-text);
+            background: rgba(124, 58, 237, 0.05);
         }
 
         .degree {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 600;
-            color: #2d3748;
-            margin-bottom: 0.5rem;
+            color: var(--primary-text);
+            margin-bottom: var(--space-sm);
         }
 
         .institution {
-            font-size: 1.1rem;
-            color: #667eea;
+            font-size: 1rem;
+            color: var(--accent-text);
             font-weight: 500;
-            margin-bottom: 0.5rem;
+            margin-bottom: var(--space-sm);
+            font-family: 'JetBrains Mono', monospace;
         }
 
         .edu-duration {
-            font-size: 0.95rem;
-            color: #718096;
-            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--secondary-text);
+            margin-bottom: var(--space-sm);
+            font-family: 'JetBrains Mono', monospace;
         }
 
         .grade {
             font-size: 0.9rem;
-            color: #38a169;
+            color: var(--success-text);
             font-weight: 500;
+            font-family: 'JetBrains Mono', monospace;
         }
 
         .edu-description {
-            color: #4a5568;
-            font-size: 0.95rem;
+            color: var(--secondary-text);
             line-height: 1.6;
-            margin-top: 0.75rem;
+            margin-top: var(--space-md);
+            font-size: 0.95rem;
         }
 
-        /* Skills Styles */
+        /* Skills section - Tech-inspired grid */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--space-lg);
+            margin-top: var(--space-lg);
         }
 
         .skill-category {
-            padding: 1.5rem;
-            background-color: #f8fafc;
-            border-radius: 8px;
-            border: 1px solid #e2e8f0;
+            padding: var(--space-lg);
+            background: var(--tertiary-bg);
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(99, 102, 241, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            border-color: rgba(99, 102, 241, 0.3);
+            transform: translateY(-2px);
         }
 
         .skill-category h4 {
-            font-size: 1.3rem;
-            color: #2d3748;
-            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            color: var(--primary-text);
+            margin-bottom: var(--space-lg);
             font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
+            position: relative;
+        }
+
+        /* Add terminal-style indicator to skill categories */
+        .skill-category h4::before {
+            content: '$ ';
+            color: var(--success-text);
+            font-weight: 400;
         }
 
         .skill-list {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.75rem;
+            gap: var(--space-sm);
         }
 
         .skill-tag {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--gradient-primary);
             color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            font-size: 0.9rem;
+            padding: var(--space-sm) var(--space-md);
+            border-radius: var(--radius-md);
+            font-size: 0.85rem;
             font-weight: 500;
-            transition: transform 0.2s ease;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
         }
 
         .skill-tag:hover {
-            transform: scale(1.05);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+            border-color: rgba(255, 255, 255, 0.2);
         }
 
-        /* Certifications Styles */
+        /* Certifications section */
         .certifications-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-lg);
+            margin-top: var(--space-lg);
         }
 
         .certification-item {
-            padding: 1.5rem;
-            background-color: #f8fafc;
-            border-radius: 8px;
-            border: 1px solid #e2e8f0;
-            transition: transform 0.2s ease;
+            padding: var(--space-lg);
+            background: var(--tertiary-bg);
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(99, 102, 241, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
         }
 
         .certification-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-3px);
+            border-color: rgba(99, 102, 241, 0.3);
+            box-shadow: var(--shadow-lg);
         }
 
         .cert-title {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 600;
-            color: #2d3748;
-            margin-bottom: 0.5rem;
+            color: var(--primary-text);
+            margin-bottom: var(--space-sm);
+            line-height: 1.4;
         }
 
         .cert-issuer {
-            color: #667eea;
+            color: var(--accent-text);
             font-weight: 500;
-            margin-bottom: 0.5rem;
+            margin-bottom: var(--space-xs);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
         }
 
         .cert-date {
-            font-size: 0.9rem;
-            color: #718096;
+            font-size: 0.85rem;
+            color: var(--secondary-text);
+            font-family: 'JetBrains Mono', monospace;
         }
 
-        /* Responsive Design */
+        /* Responsive design - Mobile-first approach */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero .title {
-                font-size: 1.3rem;
+            .hero {
+                padding: var(--space-2xl) 0;
             }
 
             .hero .summary {
-                font-size: 1.1rem;
+                margin-bottom: var(--space-lg);
             }
 
             .contact-info {
                 flex-direction: column;
-                gap: 1rem;
+                gap: var(--space-md);
             }
 
             .experience-header {
                 flex-direction: column;
                 align-items: flex-start;
-            }
-
-            .section-title {
-                font-size: 2rem;
+                gap: var(--space-sm);
             }
 
             .skills-grid {
@@ -338,51 +567,99 @@
             .certifications-grid {
                 grid-template-columns: 1fr;
             }
+
+            .card {
+                padding: var(--space-lg);
+            }
         }
 
         @media (max-width: 480px) {
             .container {
-                padding: 0 15px;
+                padding: 0 var(--space-md);
             }
 
             .card {
-                padding: 1.5rem;
-            }
-
-            .hero {
-                padding: 3rem 0;
+                padding: var(--space-md);
             }
 
             .profile-image {
                 width: 120px;
                 height: 120px;
-                font-size: 2.5rem;
+                font-size: 2rem;
             }
         }
 
-        /* Print Styles */
+        /* Print styles - Executive presentation ready */
         @media print {
+            :root {
+                --primary-bg: white;
+                --secondary-bg: white;
+                --tertiary-bg: #f8f9fa;
+                --primary-text: #000;
+                --secondary-text: #555;
+                --accent-text: #0066cc;
+            }
+
             body {
                 background: white;
                 color: black;
+                font-size: 12px;
+                line-height: 1.4;
             }
 
             .hero {
-                background: #667eea;
+                background: #6366f1 !important;
                 print-color-adjust: exact;
                 -webkit-print-color-adjust: exact;
             }
 
             .card {
                 box-shadow: none;
-                border: 1px solid #ccc;
+                border: 1px solid #ddd;
                 break-inside: avoid;
+                page-break-inside: avoid;
             }
 
             .skill-tag {
-                background: #667eea;
+                background: #6366f1 !important;
                 print-color-adjust: exact;
                 -webkit-print-color-adjust: exact;
+            }
+
+            .section-title {
+                font-size: 18px;
+            }
+
+            .job-title {
+                font-size: 14px;
+            }
+
+            .degree {
+                font-size: 14px;
+            }
+        }
+
+        /* Focus states for accessibility */
+        .skill-tag:focus,
+        .certification-item:focus,
+        .education-item:focus {
+            outline: 2px solid var(--accent-text);
+            outline-offset: 2px;
+        }
+
+        /* Smooth scrolling enhancement */
+        @media (prefers-reduced-motion: no-preference) {
+            html {
+                scroll-behavior: smooth;
+            }
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            :root {
+                --primary-text: #ffffff;
+                --secondary-text: #cccccc;
+                --accent-text: #66b3ff;
             }
         }
     </style>
@@ -397,27 +674,31 @@
                     DS
                 </div>
                 <h1>Daniel Sommer</h1>
-                <p class="title">Head of Engineering - tilta.io</p>
+                <p class="title">Head of Engineering</p>
                 <p class="summary">
                     Experienced entrepreneurial engineering leader with expertise in team management, strategic
                     technical oversight,
                     and building robust software architectures. Passionate about developing high-performing teams
                     and delivering scalable technology solutions.
                 </p>
-                <!-- <div class="contact-info">
-                    <div class="contact-item">
-                        <span>📧</span>
-                        <span>contact@danielsommer.dev</span>
-                    </div>
-                    <div class="contact-item">
-                        <span>📱</span>
-                        <span>+49 XXX XXXXXXX</span>
-                    </div>
-                    <div class="contact-item">
-                        <span>📍</span>
-                        <span>Germany</span>
-                    </div>
-                </div> -->
+                <div class="contact-info">
+                    <a href="https://www.linkedin.com/in/s0d4n1" class="contact-item social-link" target="_blank" rel="noopener noreferrer">
+                        <span class="social-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </span>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="https://github.com/s0d4n1" class="contact-item social-link" target="_blank" rel="noopener noreferrer">
+                        <span class="social-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                        </span>
+                        <span>GitHub</span>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -433,7 +714,7 @@
                     <div class="experience-header">
                         <div>
                             <h3 class="job-title">Head of Engineering</h3>
-                            <p class="company">Tilta</p>
+                            <p class="company">Tilta - tilta.io</p>
                         </div>
                         <span class="duration">Feb 2023 - Present</span>
                     </div>
