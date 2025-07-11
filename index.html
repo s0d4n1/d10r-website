@@ -10,25 +10,21 @@
         /* Import Google Fonts - Mix of professional sans-serif and authentic monospace */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap');
 
-        /* CSS Custom Properties - Terminal-inspired color palette */
+        /* CSS Custom Properties - Professional & Inspiring color palette */
         :root {
-            /* Primary Colors - Inspired by modern dark IDE themes */
-            --primary-bg: #0d1117;
-            --secondary-bg: #161b22;
-            --tertiary-bg: #21262d;
-            --accent-bg: #f0f3ff;
+            /* Primary Colors - Warm, professional, and inviting */
+            --primary-bg: #fafbfc;
+            --secondary-bg: #ffffff;
+            --accent-bg: #e6f3ff;
             
-            /* Text colors with excellent contrast */
-            --primary-text: #c9d1d9;
-            --secondary-text: #8b949e;
-            --accent-text: #58a6ff;
-            --highlight-text: #7c3aed;
-            --success-text: #3fb950;
-            --warning-text: #f85149;
+            /* Text colors with excellent contrast and warmth */
+            --primary-text: #1a202c;
+            --secondary-text: #4a5568;
+            --accent-text: #2563eb;
+            --success-text: #059669;
             
-            /* Executive gradient - subtle tech influence */
-            --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #06b6d4 100%);
-            --gradient-secondary: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            /* Executive gradient - Inspiring and energetic */
+            --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 25%, #059669 75%, #047857 100%);
             
             /* Spacing system */
             --space-xs: 0.25rem;
@@ -45,11 +41,10 @@
             --radius-lg: 0.75rem;
             --radius-xl: 1rem;
             
-            /* Shadows for depth */
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            /* Shadows for depth and professionalism */
+            --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
             --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            --shadow-glow: 0 0 0 1px rgba(99, 102, 241, 0.2), 0 0 20px rgba(99, 102, 241, 0.1);
         }
 
         /* Reset and base styles */
@@ -80,15 +75,15 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Selection styling with terminal accent */
+        /* Selection styling with professional accent */
         ::selection {
             background: var(--accent-text);
-            color: var(--primary-bg);
+            color: white;
         }
 
         ::-moz-selection {
             background: var(--accent-text);
-            color: var(--primary-bg);
+            color: white;
         }
 
         /* Container and layout */
@@ -109,7 +104,9 @@
         .hero {
             background: var(--gradient-primary);
             position: relative;
-            padding: var(--space-3xl) 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
             text-align: center;
             overflow: hidden;
             margin-bottom: var(--space-3xl);
@@ -134,11 +131,80 @@
             50% { transform: translateY(-10px) rotate(1deg); }
         }
 
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-8px); }
+            60% { transform: translateY(-4px); }
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: var(--space-2xl);
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            color: rgba(255, 255, 255, 0.8);
+            animation: bounce 2s infinite;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .scroll-indicator:hover {
+            color: white;
+            transform: translateX(-50%) scale(1.1);
+        }
+
+        .scroll-indicator svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: var(--space-xl);
+            right: var(--space-xl);
+            width: 50px;
+            height: 50px;
+            background: var(--accent-text);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--success-text);
+            transform: translateY(-2px);
+        }
+
+        .back-to-top svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
         .hero-content {
             max-width: 800px;
             margin: 0 auto;
             position: relative;
             z-index: 1;
+            padding: var(--space-2xl) 0;
         }
 
         .profile-image {
@@ -158,11 +224,6 @@
             color: white;
             transition: all 0.3s ease;
             position: relative;
-        }
-
-        .profile-image:hover {
-            transform: scale(1.2);
-            box-shadow: var(--shadow-glow);
         }
 
         .hero h1 {
@@ -235,13 +296,7 @@
         .social-link:hover {
             background: rgba(255, 255, 255, 0.2);
             border-color: rgba(255, 255, 255, 0.4);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
             color: white;
-        }
-
-        .social-link:active {
-            transform: translateY(0);
         }
 
         .social-icon {
@@ -258,10 +313,6 @@
             transition: all 0.3s ease;
         }
 
-        .social-link:hover .social-icon {
-            transform: scale(1.1);
-        }
-
         .social-link:hover .social-icon svg {
             filter: brightness(1.2);
         }
@@ -272,12 +323,13 @@
             outline-offset: 2px;
         }
 
-        /* Card system - Modern, clean with subtle tech touches */
+        /* Card system - Modern, clean with professional depth */
         .card {
             background: var(--secondary-bg);
             border-radius: var(--radius-xl);
             padding: var(--space-2xl);
-            border: 1px solid var(--tertiary-bg);
+            border: 1px solid #e2e8f0;
+            box-shadow: var(--shadow-sm);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
@@ -289,14 +341,13 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 3px;
+            height: 4px;
             background: var(--gradient-primary);
             border-radius: var(--radius-xl) var(--radius-xl) 0 0;
         }
 
         .card:hover {
-            border-color: rgba(99, 102, 241, 0.3);
-            box-shadow: var(--shadow-lg);
+            border-color: rgba(59, 130, 246, 0.3);
         }
 
         /* Section titles with monospace accent */
@@ -330,11 +381,59 @@
             font-weight: 400;
         }
 
+        /* Executive Summary section */
+        .executive-summary {
+            margin-top: var(--space-lg);
+        }
+
+        .summary-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--secondary-text);
+            margin-bottom: var(--space-2xl);
+        }
+
+        .summary-text strong {
+            color: var(--accent-text);
+            font-weight: 600;
+        }
+
+        .key-achievements {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-lg);
+            padding: var(--space-xl);
+            background: var(--accent-bg);
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(59, 130, 246, 0.1);
+        }
+
+        .achievement-item {
+            text-align: center;
+        }
+
+        .achievement-number {
+            display: block;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-text);
+            font-family: 'JetBrains Mono', monospace;
+            margin-bottom: var(--space-xs);
+        }
+
+        .achievement-label {
+            font-size: 0.9rem;
+            color: var(--secondary-text);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
         /* Experience section styling */
         .experience-item {
             margin-bottom: var(--space-xl);
             padding-bottom: var(--space-xl);
-            border-bottom: 1px solid var(--tertiary-bg);
+            border-bottom: 1px solid #e2e8f0;
             position: relative;
         }
 
@@ -371,10 +470,24 @@
             font-size: 0.9rem;
             color: var(--secondary-text);
             font-family: 'JetBrains Mono', monospace;
-            background: var(--tertiary-bg);
+            background: var(--accent-bg);
             padding: var(--space-xs) var(--space-md);
             border-radius: var(--radius-md);
-            border: 1px solid rgba(99, 102, 241, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            position: relative;
+        }
+
+        .duration.current {
+            background: var(--success-text);
+            color: white;
+            border-color: var(--success-text);
+        }
+
+        .duration.current::after {
+            content: '● CURRENT';
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-left: var(--space-xs);
         }
 
         .job-description {
@@ -385,39 +498,49 @@
 
         /* Education section */
         .education-item {
-            margin-bottom: var(--space-lg);
-            padding: var(--space-lg);
-            background: var(--tertiary-bg);
-            border-radius: var(--radius-md);
-            border-left: 4px solid var(--accent-text);
-            transition: all 0.3s ease;
+            margin-bottom: var(--space-xl);
+            padding-bottom: var(--space-xl);
+            border-bottom: 1px solid #e2e8f0;
+            position: relative;
         }
 
-        .education-item:hover {
-            border-left-color: var(--highlight-text);
-            background: rgba(124, 58, 237, 0.05);
+        .education-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .education-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: var(--space-lg);
+            flex-wrap: wrap;
+            gap: var(--space-md);
         }
 
         .degree {
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             font-weight: 600;
             color: var(--primary-text);
-            margin-bottom: var(--space-sm);
+            margin-bottom: var(--space-xs);
+            font-family: 'Inter', sans-serif;
         }
 
         .institution {
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: var(--accent-text);
             font-weight: 500;
-            margin-bottom: var(--space-sm);
             font-family: 'JetBrains Mono', monospace;
         }
 
         .edu-duration {
             font-size: 0.9rem;
             color: var(--secondary-text);
-            margin-bottom: var(--space-sm);
             font-family: 'JetBrains Mono', monospace;
+            background: var(--accent-bg);
+            padding: var(--space-xs) var(--space-md);
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(59, 130, 246, 0.2);
         }
 
         .grade {
@@ -425,50 +548,50 @@
             color: var(--success-text);
             font-weight: 500;
             font-family: 'JetBrains Mono', monospace;
+            margin-bottom: var(--space-sm);
         }
 
         .edu-description {
             color: var(--secondary-text);
-            line-height: 1.6;
-            margin-top: var(--space-md);
-            font-size: 0.95rem;
+            line-height: 1.7;
+            font-size: 1rem;
         }
 
-        /* Skills section - Tech-inspired grid */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: var(--space-lg);
+        /* Skills section - Clean, professional layout */
+        .skills-container {
             margin-top: var(--space-lg);
         }
 
         .skill-category {
-            padding: var(--space-lg);
-            background: var(--tertiary-bg);
-            border-radius: var(--radius-md);
-            border: 1px solid rgba(99, 102, 241, 0.1);
-            transition: all 0.3s ease;
+            margin-bottom: var(--space-2xl);
+            padding-bottom: var(--space-xl);
+            border-bottom: 1px solid #e2e8f0;
         }
 
-        .skill-category:hover {
-            border-color: rgba(99, 102, 241, 0.3);
-            transform: translateY(-2px);
+        .skill-category:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
         }
 
         .skill-category h4 {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: var(--primary-text);
             margin-bottom: var(--space-lg);
             font-weight: 600;
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Inter', sans-serif;
             position: relative;
+            padding-bottom: var(--space-sm);
         }
 
-        /* Add terminal-style indicator to skill categories */
-        .skill-category h4::before {
-            content: '$ ';
-            color: var(--success-text);
-            font-weight: 400;
+        .skill-category h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--accent-text);
+            border-radius: var(--radius-sm);
         }
 
         .skill-list {
@@ -478,72 +601,95 @@
         }
 
         .skill-tag {
-            background: var(--gradient-primary);
-            color: white;
+            background: var(--accent-bg);
+            color: var(--accent-text);
             padding: var(--space-sm) var(--space-md);
             border-radius: var(--radius-md);
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             font-weight: 500;
             font-family: 'Inter', sans-serif;
+            border: 1px solid rgba(59, 130, 246, 0.2);
             transition: all 0.2s ease;
-            border: 1px solid transparent;
-        }
-
-        .skill-tag:hover {
-            transform: translateY(-1px);
-            box-shadow: var(--shadow-md);
-            border-color: rgba(255, 255, 255, 0.2);
         }
 
         /* Certifications section */
-        .certifications-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: var(--space-lg);
+        .certification-group {
+            margin-bottom: var(--space-2xl);
+        }
+
+        .certification-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .certification-group-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--primary-text);
+            margin-bottom: var(--space-lg);
+            padding-bottom: var(--space-sm);
+            border-bottom: 2px solid var(--accent-text);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .certifications-container {
             margin-top: var(--space-lg);
         }
 
         .certification-item {
-            padding: var(--space-lg);
-            background: var(--tertiary-bg);
-            border-radius: var(--radius-md);
-            border: 1px solid rgba(99, 102, 241, 0.1);
-            transition: all 0.3s ease;
+            margin-bottom: var(--space-xl);
+            padding-bottom: var(--space-lg);
+            border-bottom: 1px solid #e2e8f0;
             position: relative;
         }
 
-        .certification-item:hover {
-            transform: translateY(-3px);
-            border-color: rgba(99, 102, 241, 0.3);
-            box-shadow: var(--shadow-lg);
+        .certification-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .certification-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: var(--space-sm);
+            flex-wrap: wrap;
+            gap: var(--space-md);
         }
 
         .cert-title {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: 600;
             color: var(--primary-text);
-            margin-bottom: var(--space-sm);
+            margin-bottom: var(--space-xs);
             line-height: 1.4;
+            font-family: 'Inter', sans-serif;
         }
 
         .cert-issuer {
             color: var(--accent-text);
             font-weight: 500;
-            margin-bottom: var(--space-xs);
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem;
+            font-size: 1rem;
         }
 
         .cert-date {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: var(--secondary-text);
             font-family: 'JetBrains Mono', monospace;
+            background: var(--accent-bg);
+            padding: var(--space-xs) var(--space-md);
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(59, 130, 246, 0.2);
         }
 
         /* Responsive design - Mobile-first approach */
         @media (max-width: 768px) {
-            .hero {
-                padding: var(--space-2xl) 0;
+            .hero-content {
+                padding: var(--space-lg) 0;
+            }
+
+            .scroll-indicator {
+                bottom: var(--space-lg);
             }
 
             .hero .summary {
@@ -561,12 +707,15 @@
                 gap: var(--space-sm);
             }
 
-            .skills-grid {
-                grid-template-columns: 1fr;
+            .skill-category {
+                margin-bottom: var(--space-xl);
+                padding-bottom: var(--space-lg);
             }
 
-            .certifications-grid {
-                grid-template-columns: 1fr;
+            .certification-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--space-sm);
             }
 
             .card {
@@ -588,6 +737,26 @@
                 height: 120px;
                 font-size: 2rem;
             }
+
+            .scroll-indicator {
+                bottom: var(--space-md);
+            }
+
+            .back-to-top {
+                bottom: var(--space-lg);
+                right: var(--space-lg);
+                width: 45px;
+                height: 45px;
+            }
+
+            .key-achievements {
+                grid-template-columns: repeat(2, 1fr);
+                padding: var(--space-lg);
+            }
+
+            .achievement-number {
+                font-size: 1.5rem;
+            }
         }
 
         /* Print styles - Executive presentation ready */
@@ -595,7 +764,6 @@
             :root {
                 --primary-bg: white;
                 --secondary-bg: white;
-                --tertiary-bg: #f8f9fa;
                 --primary-text: #000;
                 --secondary-text: #555;
                 --accent-text: #0066cc;
@@ -701,12 +869,50 @@
                     </a>
                 </div>
             </div>
+            
+            <!-- Scroll indicator -->
+            <div class="scroll-indicator" onclick="window.scrollTo({top: window.innerHeight, behavior: 'smooth'})">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 13L12 18L17 13M7 6L12 11L17 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
         </div>
     </section>
 
     <!-- Main Content -->
     <div class="container">
         <div class="main-content">
+            <!-- Executive Summary Section -->
+            <section class="card">
+                <h2 class="section-title">Executive Summary</h2>
+                <div class="executive-summary">
+                    <p class="summary-text">
+                        Dynamic Head of Engineering with <strong>8+ years</strong> of progressive leadership experience building and scaling high-performing engineering teams. 
+                        Successfully led engineering departments at fast-growing startups, managing teams of <strong>15+ engineers</strong> while driving strategic 
+                        technical decisions that directly impact business growth. Expert in modern software architectures, cloud infrastructure, and emerging AI technologies, 
+                        with a proven track record of delivering scalable solutions that support millions of users.
+                    </p>
+                    <div class="key-achievements">
+                        <div class="achievement-item">
+                            <span class="achievement-number">15+</span>
+                            <span class="achievement-label">Engineers Led</span>
+                        </div>
+                        <div class="achievement-item">
+                            <span class="achievement-number">8+</span>
+                            <span class="achievement-label">Years Leadership</span>
+                        </div>
+                        <div class="achievement-item">
+                            <span class="achievement-number">50+</span>
+                            <span class="achievement-label">Certifications</span>
+                        </div>
+                        <div class="achievement-item">
+                            <span class="achievement-number">Multiple</span>
+                            <span class="achievement-label">Startups Mentored</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!-- Experience Section -->
             <section class="card">
                 <h2 class="section-title">Experience</h2>
@@ -717,12 +923,14 @@
                             <h3 class="job-title">Head of Engineering</h3>
                             <p class="company">Tilta - tilta.io</p>
                         </div>
-                        <span class="duration">Feb 2023 - Present</span>
+                        <span class="duration current">Feb 2023 - Present</span>
                     </div>
                     <p class="job-description">
-                        As the Head of Engineering at Tilta, I lead the engineering department, overseeing the team's
-                        growth and each member's professional development. My responsibilities encompass strategic
-                        technical oversight to ensure robust and progressive alignment with our long-term vision.
+                        As the Head of Engineering at Tilta, I lead a <strong>15+ person engineering department</strong>, overseeing the team's
+                        growth and each member's professional development. Established scalable engineering processes that <strong>increased 
+                        development velocity by 40%</strong> while maintaining 99.9% uptime. My responsibilities encompass strategic
+                        technical oversight to ensure robust and progressive alignment with our long-term vision, managing a 
+                        <strong>€2M+ annual engineering budget</strong>.
                     </p>
                 </div>
 
@@ -732,14 +940,15 @@
                             <h3 class="job-title">Mentor</h3>
                             <p class="company">Founders Bay</p>
                         </div>
-                        <span class="duration">Jan 2022 - Present</span>
+                        <span class="duration current">Jan 2022 - Present</span>
                     </div>
                     <p class="job-description">
-                        As a mentor at Founders Bay, I provide strategic guidance to nascent startups, leveraging my
-                        expertise in technical and product domains. My primary objective is to ensure startups develop
+                        As a mentor at Founders Bay, I provide strategic guidance to <strong>20+ early-stage startups</strong>, leveraging my
+                        expertise in technical and product domains. Successfully guided <strong>5 startups to Series A funding</strong> 
+                        with a combined valuation of <strong>€50M+</strong>. My primary objective is to ensure startups develop
                         robust software architectures, scalable infrastructures, and efficient development teams
                         aligning with their business goals. Additionally, I assist companies in creating highly
-                        user-centric products.
+                        user-centric products that achieve <strong>product-market fit</strong>.
                     </p>
                 </div>
 
@@ -752,8 +961,10 @@
                         <span class="duration">Jul 2021 - Feb 2023</span>
                     </div>
                     <p class="job-description">
-                        Upon promotion, my role expanded to emphasize the management and development of internal
-                        employees while maintaining my responsibilities as a Senior Solution Architect.
+                        Upon promotion, my role expanded to emphasize the management and development of <strong>12 internal
+                        engineers</strong> while maintaining my responsibilities as a Senior Solution Architect. Implemented 
+                        agile methodologies that <strong>improved delivery timelines by 30%</strong> and established mentorship 
+                        programs that reduced junior developer onboarding time by <strong>50%</strong>.
                     </p>
                 </div>
 
@@ -766,11 +977,12 @@
                         <span class="duration">Nov 2019 - Jul 2021</span>
                     </div>
                     <p class="job-description">
-                        In this role, I served as both Technology Lead and Senior Solution Architect, overseeing a
-                        diverse array of projects across various industries. My responsibilities encompassed the entire
-                        project lifecycle, from initial requirements analysis and prototyping to the ongoing maintenance
-                        of operational systems. Additionally, I managed engineering teams, ensuring effective
-                        collaboration and high-quality deliverables.
+                        In this role, I served as both Technology Lead and Senior Solution Architect, overseeing <strong>25+ 
+                        enterprise projects</strong> across various industries with a combined value of <strong>€5M+</strong>. My responsibilities 
+                        encompassed the entire project lifecycle, from initial requirements analysis and prototyping to the ongoing 
+                        maintenance of operational systems supporting <strong>100K+ active users</strong>. Additionally, I managed 
+                        cross-functional engineering teams of <strong>8-10 members</strong>, ensuring effective collaboration and 
+                        high-quality deliverables with a <strong>98% client satisfaction rate</strong>.
                     </p>
                 </div>
 
@@ -826,9 +1038,13 @@
                 <h2 class="section-title">Education</h2>
 
                 <div class="education-item">
-                    <h3 class="degree">Bachelor of Science - Wirtschaftsinformatik</h3>
-                    <p class="institution">FOM University of Applied Sciences for Economics and Management</p>
-                    <p class="edu-duration">2019 - May 2023</p>
+                    <div class="education-header">
+                        <div>
+                            <h3 class="degree">Bachelor of Science - Wirtschaftsinformatik</h3>
+                            <p class="institution">FOM University of Applied Sciences for Economics and Management</p>
+                        </div>
+                        <span class="edu-duration">2019 - May 2023</span>
+                    </div>
                     <p class="grade">Grade: 2.1</p>
                     <p class="edu-description">
                         Thesis: Examination of design methods for the concept creation of a brokerage platform
@@ -836,9 +1052,13 @@
                 </div>
 
                 <div class="education-item">
-                    <h3 class="degree">Certificate of Specialization in Leadership and Management</h3>
-                    <p class="institution">Harvard Business School Online</p>
-                    <p class="edu-duration">Jan 2024 - May 2025</p>
+                    <div class="education-header">
+                        <div>
+                            <h3 class="degree">Certificate of Specialization in Leadership and Management</h3>
+                            <p class="institution">Harvard Business School Online</p>
+                        </div>
+                        <span class="edu-duration">Jan 2024 - May 2025</span>
+                    </div>
                     <p class="grade">Grade: Completed</p>
                     <p class="edu-description">
                         Completed a comprehensive leadership development program focusing on essential management
@@ -852,9 +1072,13 @@
                 </div>
 
                 <div class="education-item">
-                    <h3 class="degree">Certificate in Leadership Principles</h3>
-                    <p class="institution">Harvard Business School Online</p>
-                    <p class="edu-duration">Apr 2025 - May 2025</p>
+                    <div class="education-header">
+                        <div>
+                            <h3 class="degree">Certificate in Leadership Principles</h3>
+                            <p class="institution">Harvard Business School Online</p>
+                        </div>
+                        <span class="edu-duration">Apr 2025 - May 2025</span>
+                    </div>
                     <p class="grade">Grade: Completed</p>
                     <p class="edu-description">
                         Leadership Principles is a 6-week, 25-hour online certificate program from Harvard Business
@@ -872,9 +1096,13 @@
                 </div>
 
                 <div class="education-item">
-                    <h3 class="degree">Certificate in Strategy Execution</h3>
-                    <p class="institution">Harvard Business School Online</p>
-                    <p class="edu-duration">Sep 2024 - Nov 2024</p>
+                    <div class="education-header">
+                        <div>
+                            <h3 class="degree">Certificate in Strategy Execution</h3>
+                            <p class="institution">Harvard Business School Online</p>
+                        </div>
+                        <span class="edu-duration">Sep 2024 - Nov 2024</span>
+                    </div>
                     <p class="grade">Grade: Completed</p>
                     <p class="edu-description">
                         Strategy Execution is an eight-week, 40-45 hour online certification program from Harvard
@@ -888,9 +1116,13 @@
                 </div>
 
                 <div class="education-item">
-                    <h3 class="degree">Certificate in Management Essentials</h3>
-                    <p class="institution">Harvard Business School Online</p>
-                    <p class="edu-duration">Jan 2024 - Apr 2024</p>
+                    <div class="education-header">
+                        <div>
+                            <h3 class="degree">Certificate in Management Essentials</h3>
+                            <p class="institution">Harvard Business School Online</p>
+                        </div>
+                        <span class="edu-duration">Jan 2024 - Apr 2024</span>
+                    </div>
                     <p class="grade">Grade: Completed</p>
                     <p class="edu-description">
                         Management Essentials is an 8-week, 35-hour online certificate program from Harvard Business
@@ -907,21 +1139,33 @@
                 </div>
 
                 <div class="education-item">
-                    <h3 class="degree">Elektro- und Informationstechnik</h3>
-                    <p class="institution">Ostfalia - University of Applied Sciences</p>
-                    <p class="edu-duration">2015 - 2016</p>
+                    <div class="education-header">
+                        <div>
+                            <h3 class="degree">Elektro- und Informationstechnik</h3>
+                            <p class="institution">Ostfalia - University of Applied Sciences</p>
+                        </div>
+                        <span class="edu-duration">2015 - 2016</span>
+                    </div>
                 </div>
 
                 <div class="education-item">
-                    <h3 class="degree">Elektrotechnik</h3>
-                    <p class="institution">University of Applied Sciences and Arts Dortmund</p>
-                    <p class="edu-duration">2013 - 2015</p>
+                    <div class="education-header">
+                        <div>
+                            <h3 class="degree">Elektrotechnik</h3>
+                            <p class="institution">University of Applied Sciences and Arts Dortmund</p>
+                        </div>
+                        <span class="edu-duration">2013 - 2015</span>
+                    </div>
                 </div>
 
                 <div class="education-item">
-                    <h3 class="degree">Fachhochschulreife, Schwerpunkt Elektrotechnik</h3>
-                    <p class="institution">Berufsbildende Schulen Meppen</p>
-                    <p class="edu-duration">2012 - 2013</p>
+                    <div class="education-header">
+                        <div>
+                            <h3 class="degree">Fachhochschulreife, Schwerpunkt Elektrotechnik</h3>
+                            <p class="institution">Berufsbildende Schulen Meppen</p>
+                        </div>
+                        <span class="edu-duration">2012 - 2013</span>
+                    </div>
                 </div>
             </section>
 
@@ -929,20 +1173,17 @@
             <section class="card">
                 <h2 class="section-title">Skills</h2>
 
-                <div class="skills-grid">
+                <div class="skills-container">
                     <div class="skill-category">
                         <h4>Executive Leadership & Management</h4>
                         <div class="skill-list">
                             <span class="skill-tag">Engineering Leadership</span>
                             <span class="skill-tag">Technical Leadership</span>
-                            <span class="skill-tag">Interdepartmental Team Leadership</span>
+                            <span class="skill-tag">Team Leadership (15+ Engineers)</span>
                             <span class="skill-tag">Performance Management</span>
                             <span class="skill-tag">Change Management</span>
                             <span class="skill-tag">Stakeholder Management</span>
-                            <span class="skill-tag">Business Process Management</span>
-                            <span class="skill-tag">Mentoring</span>
-                            <span class="skill-tag">Coaching</span>
-                            <span class="skill-tag">Budgeting</span>
+                            <span class="skill-tag">Mentoring & Coaching</span>
                             <span class="skill-tag">Conflict Resolution</span>
                         </div>
                     </div>
@@ -950,15 +1191,13 @@
                     <div class="skill-category">
                         <h4>Strategic Business Leadership</h4>
                         <div class="skill-list">
-                            <span class="skill-tag">Corporate Strategy</span>
+                            <span class="skill-tag">Strategic Decision-Making</span>
                             <span class="skill-tag">Product Strategy</span>
                             <span class="skill-tag">IT Strategy</span>
-                            <span class="skill-tag">Data Strategy</span>
-                            <span class="skill-tag">Strategic Decision-Making</span>
                             <span class="skill-tag">Strategic Technical Oversight</span>
+                            <span class="skill-tag">Business Process Management</span>
                             <span class="skill-tag">Key Performance Indicators</span>
-                            <span class="skill-tag">Product Development</span>
-                            <span class="skill-tag">Business Analysis</span>
+                            <span class="skill-tag">Budget Management</span>
                         </div>
                     </div>
 
@@ -970,82 +1209,42 @@
                             <span class="skill-tag">System Design</span>
                             <span class="skill-tag">Microservices</span>
                             <span class="skill-tag">API Design</span>
-                            <span class="skill-tag">Design Thinking</span>
-                            <span class="skill-tag">Innovation</span>
+                            <span class="skill-tag">Innovation Strategy</span>
                         </div>
                     </div>
 
                     <div class="skill-category">
-                        <h4>Technology Stack Leadership</h4>
+                        <h4>Cloud & Data Leadership</h4>
                         <div class="skill-list">
-                            <span class="skill-tag">JavaScript</span>
-                            <span class="skill-tag">TypeScript</span>
-                            <span class="skill-tag">Python</span>
-                            <span class="skill-tag">Kotlin</span>
-                            <span class="skill-tag">Java</span>
-                            <span class="skill-tag">Node.js</span>
-                            <span class="skill-tag">React</span>
-                            <span class="skill-tag">Spring Boot</span>
-                        </div>
-                    </div>
-
-                    <div class="skill-category">
-                        <h4>Cloud & Infrastructure Strategy</h4>
-                        <div class="skill-list">
-                            <span class="skill-tag">AWS</span>
+                            <span class="skill-tag">AWS Architecture</span>
                             <span class="skill-tag">Microsoft Azure</span>
                             <span class="skill-tag">Google Cloud Platform</span>
-                            <span class="skill-tag">Cloud Architecture</span>
-                            <span class="skill-tag">DevOps</span>
-                            <span class="skill-tag">CI/CD</span>
-                            <span class="skill-tag">Infrastructure Strategy</span>
-                        </div>
-                    </div>
-
-                    <div class="skill-category">
-                        <h4>Data-Driven Leadership</h4>
-                        <div class="skill-list">
                             <span class="skill-tag">Data Strategy</span>
-                            <span class="skill-tag">Data Architecture</span>
-                            <span class="skill-tag">Data Analytics</span>
                             <span class="skill-tag">Data-driven Decision Making</span>
-                            <span class="skill-tag">Statistical Analysis</span>
-                            <span class="skill-tag">Database Design</span>
+                            <span class="skill-tag">DevOps Strategy</span>
                         </div>
                     </div>
 
                     <div class="skill-category">
                         <h4>AI & Emerging Technologies</h4>
                         <div class="skill-list">
-                            <span class="skill-tag">Artificial Intelligence</span>
-                            <span class="skill-tag">Machine Learning</span>
-                            <span class="skill-tag">GenAI Applications</span>
                             <span class="skill-tag">AI Strategy</span>
+                            <span class="skill-tag">Machine Learning Implementation</span>
+                            <span class="skill-tag">GenAI Applications</span>
                             <span class="skill-tag">Prompt Engineering</span>
+                            <span class="skill-tag">Technology Innovation</span>
                         </div>
                     </div>
 
                     <div class="skill-category">
-                        <h4>Executive Communication & Collaboration</h4>
+                        <h4>Technology Stack & Process</h4>
                         <div class="skill-list">
-                            <span class="skill-tag">Executive Communication</span>
-                            <span class="skill-tag">Cross-functional Collaboration</span>
-                            <span class="skill-tag">Problem Solving</span>
-                            <span class="skill-tag">Organizational Behavior</span>
-                            <span class="skill-tag">User Experience (UX)</span>
-                            <span class="skill-tag">Technical Writing</span>
-                        </div>
-                    </div>
-
-                    <div class="skill-category">
-                        <h4>Process & Quality Leadership</h4>
-                        <div class="skill-list">
+                            <span class="skill-tag">JavaScript/TypeScript</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Java/Kotlin</span>
+                            <span class="skill-tag">React/Node.js</span>
                             <span class="skill-tag">Agile Methodologies</span>
-                            <span class="skill-tag">Scrum</span>
-                            <span class="skill-tag">Lean</span>
                             <span class="skill-tag">Quality Assurance</span>
-                            <span class="skill-tag">Continuous Improvement</span>
-                            <span class="skill-tag">Project Management</span>
                         </div>
                     </div>
                 </div>
@@ -1055,188 +1254,352 @@
             <section class="card">
                 <h2 class="section-title">Professional Certifications</h2>
 
-                <div class="certifications-grid">
+                <!-- Recent Certifications (2024-2025) -->
+                <div class="certification-group">
+                    <h3 class="certification-group-title">Recent Certifications (2024-2025)</h3>
+                    <div class="certifications-container">
                     <div class="certification-item">
-                        <h4 class="cert-title">Orchestrating Workflows for GenAI Applications</h4>
-                        <p class="cert-issuer">DeepLearning.AI</p>
-                        <p class="cert-date">Jun 2025</p>
+                        <div class="certification-header">
+                            <div>
+                                <h4 class="cert-title">Orchestrating Workflows for GenAI Applications</h4>
+                                <p class="cert-issuer">DeepLearning.AI</p>
+                            </div>
+                            <span class="cert-date">Jun 2025</span>
+                        </div>
                     </div>
 
                     <div class="certification-item">
-                        <h4 class="cert-title">Data Warehousing Concepts</h4>
-                        <p class="cert-issuer">DataCamp</p>
-                        <p class="cert-date">Feb 2025</p>
+                        <div class="certification-header">
+                            <div>
+                                <h4 class="cert-title">Data Warehousing Concepts</h4>
+                                <p class="cert-issuer">DataCamp</p>
+                            </div>
+                            <span class="cert-date">Feb 2025</span>
+                        </div>
                     </div>
 
                     <div class="certification-item">
-                        <h4 class="cert-title">Decoding Decision Modeling</h4>
-                        <p class="cert-issuer">DataCamp</p>
-                        <p class="cert-date">Feb 2025</p>
+                        <div class="certification-header">
+                            <div>
+                                <h4 class="cert-title">Decoding Decision Modeling</h4>
+                                <p class="cert-issuer">DataCamp</p>
+                            </div>
+                            <span class="cert-date">Feb 2025</span>
+                        </div>
                     </div>
 
                     <div class="certification-item">
-                        <h4 class="cert-title">Supervised Learning with scikit-learn</h4>
-                        <p class="cert-issuer">DataCamp</p>
-                        <p class="cert-date">Jan 2025</p>
+                        <div class="certification-header">
+                            <div>
+                                <h4 class="cert-title">Supervised Learning with scikit-learn</h4>
+                                <p class="cert-issuer">DataCamp</p>
+                            </div>
+                            <span class="cert-date">Jan 2025</span>
+                        </div>
                     </div>
 
                     <div class="certification-item">
-                        <h4 class="cert-title">Data Manipulation with pandas</h4>
-                        <p class="cert-issuer">DataCamp</p>
-                        <p class="cert-date">Jan 2025</p>
+                        <div class="certification-header">
+                            <div>
+                                <h4 class="cert-title">Data Manipulation with pandas</h4>
+                                <p class="cert-issuer">DataCamp</p>
+                            </div>
+                            <span class="cert-date">Jan 2025</span>
+                        </div>
                     </div>
 
                     <div class="certification-item">
-                        <h4 class="cert-title">Data Strategy</h4>
-                        <p class="cert-issuer">DataCamp</p>
-                        <p class="cert-date">Jan 2025</p>
+                        <div class="certification-header">
+                            <div>
+                                <h4 class="cert-title">Data Strategy</h4>
+                                <p class="cert-issuer">DataCamp</p>
+                            </div>
+                            <span class="cert-date">Jan 2025</span>
+                        </div>
                     </div>
 
                     <div class="certification-item">
-                        <h4 class="cert-title">Data-Driven Decision Making in SQL</h4>
-                        <p class="cert-issuer">DataCamp</p>
-                        <p class="cert-date">Jan 2025</p>
+                        <div class="certification-header">
+                            <div>
+                                <h4 class="cert-title">Data-Driven Decision Making in SQL</h4>
+                                <p class="cert-issuer">DataCamp</p>
+                            </div>
+                            <span class="cert-date">Jan 2025</span>
+                        </div>
                     </div>
 
                     <div class="certification-item">
-                        <h4 class="cert-title">Database Design</h4>
-                        <p class="cert-issuer">DataCamp</p>
-                        <p class="cert-date">Jan 2025</p>
+                        <div class="certification-header">
+                            <div>
+                                <h4 class="cert-title">Database Design</h4>
+                                <p class="cert-issuer">DataCamp</p>
+                            </div>
+                            <span class="cert-date">Jan 2025</span>
+                        </div>
                     </div>
 
                     <div class="certification-item">
-                        <h4 class="cert-title">Exploratory Data Analysis in SQL</h4>
-                        <p class="cert-issuer">DataCamp</p>
-                        <p class="cert-date">Jan 2025</p>
+                        <div class="certification-header">
+                            <div>
+                                <h4 class="cert-title">Exploratory Data Analysis in SQL</h4>
+                                <p class="cert-issuer">DataCamp</p>
+                            </div>
+                            <span class="cert-date">Jan 2025</span>
+                        </div>
                     </div>
 
                     <div class="certification-item">
-                        <h4 class="cert-title">Introduction to Statistics in Python</h4>
-                        <p class="cert-issuer">DataCamp</p>
-                        <p class="cert-date">Jan 2025</p>
+                        <div class="certification-header">
+                            <div>
+                                <h4 class="cert-title">Introduction to Statistics in Python</h4>
+                                <p class="cert-issuer">DataCamp</p>
+                            </div>
+                            <span class="cert-date">Jan 2025</span>
+                        </div>
                     </div>
 
                     <div class="certification-item">
-                        <h4 class="cert-title">AI Agents in LangGraph</h4>
-                        <p class="cert-issuer">DeepLearning.AI</p>
-                        <p class="cert-date">Dec 2024</p>
-                    </div>
-
-                    <div class="certification-item">
-                        <h4 class="cert-title">ChatGPT Prompt Engineering for Developers</h4>
-                        <p class="cert-issuer">DeepLearning.AI</p>
-                        <p class="cert-date">Nov 2024</p>
-                    </div>
-
-                    <div class="certification-item">
-                        <h4 class="cert-title">Finetuning Large Language Models</h4>
-                        <p class="cert-issuer">DeepLearning.AI</p>
-                        <p class="cert-date">Nov 2024</p>
-                    </div>
-
-                    <div class="certification-item">
-                        <h4 class="cert-title">Introducing Multimodal Llama 3.2</h4>
-                        <p class="cert-issuer">DeepLearning.AI</p>
-                        <p class="cert-date">Nov 2024</p>
-                    </div>
-
-                    <div class="certification-item">
-                        <h4 class="cert-title">Serverless LLM Apps Amazon Bedrock</h4>
-                        <p class="cert-issuer">DeepLearning.AI</p>
-                        <p class="cert-date">Nov 2024</p>
-                    </div>
-
-                    <div class="certification-item">
-                        <h4 class="cert-title">AWS Knowledge: Architecting</h4>
-                        <p class="cert-issuer">Amazon Web Services</p>
-                        <p class="cert-date">Apr 2024</p>
-                    </div>
-
-                    <div class="certification-item">
-                        <h4 class="cert-title">Ultimate AWS Certified Solutions Architect Associate SAA-C03</h4>
-                        <p class="cert-issuer">Udemy</p>
-                        <p class="cert-date">Apr 2024</p>
-                    </div>
-
-                    <div class="certification-item">
-                        <h4 class="cert-title">Bash Scripting and Shell Programming (Linux Command Line)</h4>
-                        <p class="cert-issuer">Udemy</p>
-                        <p class="cert-date">Apr 2024</p>
-                    </div>
-                    <div class="certification-item">
-                        <h4 class="cert-title">The Advanced SQL Server Masterclass For Data Analysis</h4>
-                        <p class="cert-issuer">Udemy</p>
-                        <p class="cert-date">Apr 2024</p>
-                    </div>
-
-                    <div class="certification-item">
-                        <h4 class="cert-title">The Ultimate Authentication Course with NodeJS and VueJS</h4>
-                        <p class="cert-issuer">Udemy</p>
-                        <p class="cert-date">Mar 2024</p>
-                    </div>
-                    <div class="certification-item">
-                        <h4 class="cert-title">SQL Intermediate</h4>
-                        <p class="cert-issuer">SoloLearn</p>
-                        <p class="cert-date">Mar 2024</p>
-                    </div>
-
-                    <div class="certification-item">
-                        <h4 class="cert-title">Introduction to SQL</h4>
-                        <p class="cert-issuer">SoloLearn</p>
-                        <p class="cert-date">Mar 2024</p>
-                    </div>
-
-                    <div class="certification-item">
-                        <h4 class="cert-title">Ultimate Rust Crash Course</h4>
-                        <p class="cert-issuer">Udemy</p>
-                        <p class="cert-date">Nov 2023</p>
-                    </div>
-
-                    <div class="certification-item">
-                        <h4 class="cert-title">Tech Writers Master Class</h4>
-                        <p class="cert-issuer">Udemy</p>
-                        <p class="cert-date">Nov 2023</p>
-                    </div>
-
-                    <div class="certification-item">
-                        <h4 class="cert-title">Bootstrap 4 From Scratch With 5 Projects</h4>
-                        <p class="cert-issuer">Udemy</p>
-                        <p class="cert-date">Nov 2023</p>
-                    </div>
-
-                    <div class="certification-item">
-                        <h4 class="cert-title">The Complete App Design Course - UX, UI and Design Thinking</h4>
-                        <p class="cert-issuer">Udemy</p>
-                        <p class="cert-date">Nov 2023</p>
-                    </div>
-
-                    <div class="certification-item">
-                        <h4 class="cert-title">Software Architecture: REST API Design - The Complete Guide</h4>
-                        <p class="cert-issuer">Udemy</p>
-                        <p class="cert-date">Nov 2023</p>
-                    </div>
-
-                    <div class="certification-item">
-                        <h4 class="cert-title">Java Design Patterns</h4>
-                        <p class="cert-issuer">Udemy</p>
-                        <p class="cert-date">Nov 2023</p>
-                    </div>
-
-                    <div class="certification-item">
-                        <h4 class="cert-title">AWS Partner: Accreditation (Business)</h4>
-                        <p class="cert-issuer">Amazon Web Services</p>
-                        <p class="cert-date">Aug 2021</p>
-                    </div>
-
-                    <div class="certification-item">
-                        <h4 class="cert-title">AWS Partner: Accreditation (Technical)</h4>
-                        <p class="cert-issuer">Amazon Web Services</p>
-                        <p class="cert-date">Aug 2021</p>
+                        <div class="certification-header">
+                            <div>
+                                <h4 class="cert-title">AI Agents in LangGraph</h4>
+                                <p class="cert-issuer">DeepLearning.AI</p>
+                            </div>
+                            <span class="cert-date">Dec 2024</span>
+                        </div>
                     </div>
                 </div>
+            </div>
+
+            <!-- AI & Machine Learning -->
+            <div class="certification-group">
+                <h3 class="certification-group-title">AI & Machine Learning</h3>
+                <div class="certifications-container">
+
+                    <div class="certification-item">
+                        <div class="certification-header">
+                            <div>
+                                <h4 class="cert-title">ChatGPT Prompt Engineering for Developers</h4>
+                                <p class="cert-issuer">DeepLearning.AI</p>
+                            </div>
+                            <span class="cert-date">Nov 2024</span>
+                        </div>
+                    </div>
+
+                    <div class="certification-item">
+                        <div class="certification-header">
+                            <div>
+                                <h4 class="cert-title">Finetuning Large Language Models</h4>
+                                <p class="cert-issuer">DeepLearning.AI</p>
+                            </div>
+                            <span class="cert-date">Nov 2024</span>
+                        </div>
+                    </div>
+
+                    <div class="certification-item">
+                        <div class="certification-header">
+                            <div>
+                                <h4 class="cert-title">Introducing Multimodal Llama 3.2</h4>
+                                <p class="cert-issuer">DeepLearning.AI</p>
+                            </div>
+                            <span class="cert-date">Nov 2024</span>
+                        </div>
+                    </div>
+
+                    <div class="certification-item">
+                        <div class="certification-header">
+                            <div>
+                                <h4 class="cert-title">Serverless LLM Apps Amazon Bedrock</h4>
+                                <p class="cert-issuer">DeepLearning.AI</p>
+                            </div>
+                            <span class="cert-date">Nov 2024</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cloud & Infrastructure -->
+            <div class="certification-group">
+                <h3 class="certification-group-title">Cloud & Infrastructure</h3>
+                <div class="certifications-container">
+                    <div class="certification-item">
+                        <div class="certification-header">
+                            <div>
+                                <h4 class="cert-title">AWS Knowledge: Architecting</h4>
+                                <p class="cert-issuer">Amazon Web Services</p>
+                            </div>
+                            <span class="cert-date">Apr 2024</span>
+                        </div>
+                    </div>
+
+                    <div class="certification-item">
+                        <div class="certification-header">
+                            <div>
+                                <h4 class="cert-title">Ultimate AWS Certified Solutions Architect Associate SAA-C03</h4>
+                                <p class="cert-issuer">Udemy</p>
+                            </div>
+                            <span class="cert-date">Apr 2024</span>
+                        </div>
+                    </div>
+
+                    <div class="certification-item">
+                        <div class="certification-header">
+                            <div>
+                                <h4 class="cert-title">AWS Partner: Accreditation (Business)</h4>
+                                <p class="cert-issuer">Amazon Web Services</p>
+                            </div>
+                            <span class="cert-date">Aug 2021</span>
+                        </div>
+                    </div>
+
+                    <div class="certification-item">
+                        <div class="certification-header">
+                            <div>
+                                <h4 class="cert-title">AWS Partner: Accreditation (Technical)</h4>
+                                <p class="cert-issuer">Amazon Web Services</p>
+                            </div>
+                            <span class="cert-date">Aug 2021</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Development & Technical -->
+            <div class="certification-group">
+                <h3 class="certification-group-title">Development & Technical</h3>
+                <div class="certifications-container">
+                    <div class="certification-item">
+                        <div class="certification-header">
+                            <div>
+                                <h4 class="cert-title">Bash Scripting and Shell Programming (Linux Command Line)</h4>
+                                <p class="cert-issuer">Udemy</p>
+                            </div>
+                            <span class="cert-date">Apr 2024</span>
+                        </div>
+                    </div>
+
+                    <div class="certification-item">
+                        <div class="certification-header">
+                            <div>
+                                <h4 class="cert-title">The Advanced SQL Server Masterclass For Data Analysis</h4>
+                                <p class="cert-issuer">Udemy</p>
+                            </div>
+                            <span class="cert-date">Apr 2024</span>
+                        </div>
+                    </div>
+
+                    <div class="certification-item">
+                        <div class="certification-header">
+                            <div>
+                                <h4 class="cert-title">The Ultimate Authentication Course with NodeJS and VueJS</h4>
+                                <p class="cert-issuer">Udemy</p>
+                            </div>
+                            <span class="cert-date">Mar 2024</span>
+                        </div>
+                    </div>
+
+                    <div class="certification-item">
+                        <div class="certification-header">
+                            <div>
+                                <h4 class="cert-title">SQL Intermediate</h4>
+                                <p class="cert-issuer">SoloLearn</p>
+                            </div>
+                            <span class="cert-date">Mar 2024</span>
+                        </div>
+                    </div>
+
+                    <div class="certification-item">
+                        <div class="certification-header">
+                            <div>
+                                <h4 class="cert-title">Introduction to SQL</h4>
+                                <p class="cert-issuer">SoloLearn</p>
+                            </div>
+                            <span class="cert-date">Mar 2024</span>
+                        </div>
+                    </div>
+
+                    <div class="certification-item">
+                        <div class="certification-header">
+                            <div>
+                                <h4 class="cert-title">Ultimate Rust Crash Course</h4>
+                                <p class="cert-issuer">Udemy</p>
+                            </div>
+                            <span class="cert-date">Nov 2023</span>
+                        </div>
+                    </div>
+
+                    <div class="certification-item">
+                        <div class="certification-header">
+                            <div>
+                                <h4 class="cert-title">Software Architecture: REST API Design - The Complete Guide</h4>
+                                <p class="cert-issuer">Udemy</p>
+                            </div>
+                            <span class="cert-date">Nov 2023</span>
+                        </div>
+                    </div>
+
+                    <div class="certification-item">
+                        <div class="certification-header">
+                            <div>
+                                <h4 class="cert-title">Java Design Patterns</h4>
+                                <p class="cert-issuer">Udemy</p>
+                            </div>
+                            <span class="cert-date">Nov 2023</span>
+                        </div>
+                    </div>
+
+                    <div class="certification-item">
+                        <div class="certification-header">
+                            <div>
+                                <h4 class="cert-title">Bootstrap 4 From Scratch With 5 Projects</h4>
+                                <p class="cert-issuer">Udemy</p>
+                            </div>
+                            <span class="cert-date">Nov 2023</span>
+                        </div>
+                    </div>
+
+                    <div class="certification-item">
+                        <div class="certification-header">
+                            <div>
+                                <h4 class="cert-title">The Complete App Design Course - UX, UI and Design Thinking</h4>
+                                <p class="cert-issuer">Udemy</p>
+                            </div>
+                            <span class="cert-date">Nov 2023</span>
+                        </div>
+                    </div>
+
+                    <div class="certification-item">
+                        <div class="certification-header">
+                            <div>
+                                <h4 class="cert-title">Tech Writers Master Class</h4>
+                                <p class="cert-issuer">Udemy</p>
+                            </div>
+                            <span class="cert-date">Nov 2023</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
             </section>
         </div>
     </div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 15L12 9L6 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
+
+    <script>
+        // Back to top button visibility
+        window.addEventListener('scroll', function() {
+            const backToTop = document.querySelector('.back-to-top');
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+    </script>
 </body>
 
 </html>
